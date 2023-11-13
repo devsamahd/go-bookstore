@@ -1,4 +1,4 @@
-module github.com/devsamahd/bookstore
+module github.com/devsamahd/go-bookstore
 
 go 1.21.4
 
