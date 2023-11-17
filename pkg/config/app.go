@@ -1,22 +1,22 @@
 package config
 
 import (
+	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
-var (
-	db * gorm.DB
-)
+var db *gorm.DB
 
-func Connect(){
-	d, err := gorm.Open("mysql", "root:''/bookstore?charset=utf8&parseTime=True&loc=Local")
-	if(err != nil){
-		panic(err)
+func Connect() {
+	connectionString := fmt.Sprintf("%s:%s@/%s?charset=utf8&parseTime=True&loc=Local", "root", "", "bookstore")
+	database, err := gorm.Open("mysql", connectionString)
+	if err != nil {
+		panic("Failed to connect to the database: " + err.Error())
 	}
-	db= d
+	db = database
 }
 
-func GetDB() *gorm.DB{
+func GetDB() *gorm.DB {
 	return db
 }
